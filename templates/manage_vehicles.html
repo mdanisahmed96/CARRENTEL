@@ -1,0 +1,48 @@
+<!-- templates/manage_vehicles.html (New File) -->
+{% extends "layout.html" %}
+{% block title %}Manage Vehicles{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Manage Vehicles</h1>
+    <!-- This button is ready for when you want to add a new vehicle -->
+    <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        <i class="fas fa-plus mr-2"></i>Add Vehicle
+    </a>
+</div>
+
+<div class="bg-white shadow-md rounded-lg overflow-x-auto">
+    <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+            <tr>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Vehicle ID</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Brand</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Model</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Registration</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Rent/Day</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Last Serviced</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            {% for vehicle in vehicles %}
+            <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 text-center">{{ vehicle.VEHICLES_ID }}</td>
+                <td class="py-3 px-4">{{ vehicle.BRAND }}</td>
+                <td class="py-3 px-4">{{ vehicle.MODEL }}</td>
+                <td class="py-3 px-4 text-center">{{ vehicle.REGISTRATION }}</td>
+                <td class="py-3 px-4 text-center">${{ "%.2f"|format(vehicle.RENTPERDAY) }}</td>
+                <td class="py-3 px-4 text-center">{{ vehicle.LASTSERVICEDATE.strftime('%Y-%m-%d') if vehicle.LASTSERVICEDATE else 'N/A' }}</td>
+                <td class="py-3 px-4 text-center">
+                    <a href="#" class="text-blue-500 hover:text-blue-700 mr-2" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="text-red-500 hover:text-red-700" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="text-center py-4">No vehicles found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

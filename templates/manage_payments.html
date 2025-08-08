@@ -1,0 +1,38 @@
+<!-- templates/manage_payments.html -->
+{% extends "layout.html" %}
+{% block title %}Manage Payments{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Manage Payments</h1>
+    <!-- Future "Add Payment" button can go here -->
+</div>
+
+<div class="bg-white rounded-lg shadow-md overflow-x-auto">
+    <table class="w-full text-left">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="px-6 py-3">Payment ID</th>
+                <th class="px-6 py-3">Booking ID</th>
+                <th class="px-6 py-3">Amount</th>
+                <th class="px-6 py-3">Payment Date</th>
+                <th class="px-6 py-3">Payment Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr class="border-b hover:bg-gray-50">
+                <td class="px-6 py-4">{{ payment.PAYMENT_ID }}</td>
+                <td class="px-6 py-4">{{ payment.BOOKING_ID }}</td>
+                <td class="px-6 py-4">${{ "%.2f"|format(payment.AMOUNT) }}</td>
+                <td class="px-6 py-4">{{ payment.PAYMENTDATE.strftime('%Y-%m-%d') }}</td>
+                <td class="px-6 py-4">{{ payment.PAYMENTMETHOD }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center py-4 text-gray-500">No payment records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

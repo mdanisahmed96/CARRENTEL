@@ -1,0 +1,41 @@
+<!-- templates/manage_feedbacks.html (New File) -->
+{% extends "layout.html" %}
+{% block title %}Manage Customer Feedbacks{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Customer Feedbacks</h1>
+</div>
+
+<div class="bg-white shadow-md rounded-lg overflow-x-auto">
+    <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+            <tr>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Feedback ID</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Customer</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Rating</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Date</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm w-1/2">Comment</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            {% for feedback in feedback_records %}
+            <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 text-center">{{ feedback.FEEDBACK_ID }}</td>
+                <td class="py-3 px-4">{{ feedback.CUSTOMERNAME }}</td>
+                <td class="py-3 px-4 text-center">{{ feedback.RATING }}/5</td>
+                <td class="py-3 px-4 text-center">{{ feedback.FEEDBACKDATE.strftime('%Y-%m-%d') }}</td>
+                <td class="py-3 px-4">{{ feedback.COMMENTS }}</td>
+                <td class="py-3 px-4 text-center">
+                    <a href="#" class="text-red-500 hover:text-red-700" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center py-4">No feedback records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

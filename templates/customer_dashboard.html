@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Customer Dashboard{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Welcome, {{ session.customer_name }}!</h1>
+<p class="text-lg text-gray-600 mb-8">This is your personal dashboard. Here you can manage your bookings and find new cars.</p>
+
+<div class="grid md:grid-cols-3 gap-8">
+    <a href="{{ url_for('search_vehicles') }}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h2 class="text-xl font-bold mb-2"><i class="fas fa-search mr-2"></i>Search Vehicles</h2>
+        <p class="text-gray-600">Find and book your next rental car.</p>
+    </a>
+    <a href="{{ url_for('order_details') }}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h2 class="text-xl font-bold mb-2"><i class="fas fa-file-invoice-dollar mr-2"></i>Order Details</h2>
+        <p class="text-gray-600">View your current and upcoming bookings.</p>
+    </a>
+    <a href="{{ url_for('previous_orders') }}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h2 class="text-xl font-bold mb-2"><i class="fas fa-history mr-2"></i>Previous Orders</h2>
+        <p class="text-gray-600">Look through your past rental history.</p>
+    </a>
+</div>
+{% endblock %}

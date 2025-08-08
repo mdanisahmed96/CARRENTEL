@@ -1,0 +1,32 @@
+/* static/css/style.css */
+
+/* 1. Font Imports */
+/* Import the Inter font family from Google Fonts for a clean, modern look. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+/* 2. Base & Body Styles */
+/* Apply base styles to the body for consistent typography and background. */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7fafc; /* This is equivalent to Tailwind's bg-gray-100 */
+}
+
+/* 3. Custom Utility Classes */
+/* Custom class for the hero section background image. */
+.bg-hero {
+    background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=Find+Your+Perfect+Ride');
+    background-size: cover;
+    background-position: center;
+}
+
+/* 4. Transitions & Animations */
+/* Add a smooth transition to all elements for a polished feel on hover and other state changes. */
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Add a subtle lift effect to cards on hover for better interactivity. */
+/* Note: This class should be added to the card elements in your HTML for the effect to apply. */
+.transform:hover {
+    transform: translateY(-5px);
+}

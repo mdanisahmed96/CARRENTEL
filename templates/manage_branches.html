@@ -1,0 +1,44 @@
+<!-- templates/manage_branches.html (New File) -->
+{% extends "layout.html" %}
+{% block title %}Manage Branches{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Manage Branches</h1>
+    <!-- This button is ready for when you want to add a new branch -->
+    <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        <i class="fas fa-plus mr-2"></i>Add Branch
+    </a>
+</div>
+
+<div class="bg-white shadow-md rounded-lg overflow-x-auto">
+    <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+            <tr>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Branch ID</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Branch Name</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Location</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Phone</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            {% for branch in branches %}
+            <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 text-center">{{ branch.BRANCH_ID }}</td>
+                <td class="py-3 px-4">{{ branch.BRACHNAME }}</td>
+                <td class="py-3 px-4">{{ branch.LOCATION }}</td>
+                <td class="py-3 px-4 text-center">{{ branch.PHONE }}</td>
+                <td class="py-3 px-4 text-center">
+                    <a href="#" class="text-blue-500 hover:text-blue-700 mr-2" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="text-red-500 hover:text-red-700" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center py-4">No branches found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

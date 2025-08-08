@@ -1,0 +1,40 @@
+<!-- templates/index.html -->
+{% extends "layout.html" %}
+{% block title %}Car Rental System{% endblock %}
+{% block content %}
+
+<!-- Hero Section - Minimal Academic Style -->
+<div class="bg-gray-200 rounded-md p-10 text-center">
+    <h1 class="text-3xl font-bold mb-4">Car Rental System</h1>
+    <p class="text-gray-700 max-w-2xl mx-auto">
+        This system allows customers to rent vehicles and employees to manage bookings, vehicles, and company operations.
+    </p>
+</div>
+
+<!-- Portal Selection Section -->
+<div id="portals" class="py-10 container mx-auto px-6">
+    <h2 class="text-2xl font-bold text-center mb-8">Select Your Portal</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Customer Card -->
+        <div class="border p-6 rounded-md bg-white text-center flex flex-col justify-between">
+            <div>
+                <h3 class="text-lg font-bold mb-2">For Customers</h3>
+                <p class="text-gray-600 mb-4">Access your account, view bookings, and find your next ride.</p>
+            </div>
+            <a href="{{ url_for('customer_login') }}" class="block bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Customer Portal</a>
+        </div>
+
+        <!-- Employee Card -->
+        <div class="border p-6 rounded-md bg-white text-center flex flex-col justify-between">
+            <div>
+                <h3 class="text-lg font-bold mb-2">For Employees</h3>
+                <p class="text-gray-600 mb-4">Manage vehicles, bookings, and all company operations.</p>
+            </div>
+            <a href="{{ url_for('employee_login') }}" class="block bg-green-500 text-white py-2 rounded hover:bg-green-600">Employee Portal</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

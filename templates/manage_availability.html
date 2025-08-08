@@ -1,0 +1,51 @@
+<!-- templates/manage_availability.html (New File) -->
+{% extends "layout.html" %}
+{% block title %}Vehicle Availability{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold">Vehicle Availability</h1>
+    <!-- This button is ready for when you want to update availability -->
+    <a href="#" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        <i class="fas fa-plus mr-2"></i>Update Status
+    </a>
+</div>
+
+<div class="bg-white shadow-md rounded-lg overflow-x-auto">
+    <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+            <tr>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Avail. ID</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Vehicle</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Available From</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Available To</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Status</th>
+                <th class="py-3 px-4 uppercase font-semibold text-sm">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            {% for item in availability_records %}
+            <tr class="border-b hover:bg-gray-50">
+                <td class="py-3 px-4 text-center">{{ item.AVAILABILITY_ID }}</td>
+                <td class="py-3 px-4">{{ item.BRAND }} {{ item.MODEL }} (ID: {{ item.VEHICLES_ID }})</td>
+                <td class="py-3 px-4 text-center">{{ item.AVAILABLE_FROM.strftime('%Y-%m-%d') }}</td>
+                <td class="py-3 px-4 text-center">{{ item.AVAILABLE_TO.strftime('%Y-%m-%d') }}</td>
+                <td class="py-3 px-4 text-center">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        {{ 'bg-green-100 text-green-800' if item.STATUS|lower == 'available' else 'bg-yellow-100 text-yellow-800' }}">
+                        {{ item.STATUS }}
+                    </span>
+                </td>
+                <td class="py-3 px-4 text-center">
+                    <a href="#" class="text-blue-500 hover:text-blue-700 mr-2" title="Edit"><i class="fas fa-edit"></i></a>
+                    <a href="#" class="text-red-500 hover:text-red-700" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center py-4">No availability records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
